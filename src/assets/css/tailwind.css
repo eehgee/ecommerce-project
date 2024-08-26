@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body{
+    height: 100vh;
+    margin : 0;
+}
+
+.dark {
+    background-color: #000000;
+    color: #fff;
+  }
+  
+  [data-theme="light"] {
+    background-color: #fff;
+    color: #1a1a1a;
+  }
+  
+  .dark .bg-gray-800 {
+    background-color: #1d1a1a;
+  }
+  
+  [data-theme="light"] .bg-gray-800 {
+    background-color: #fff;
+  }
+  
+  [data-theme="light"] .bg-gray-700 {
+    background-color: #f4f4f4;
+  }
+  
+  [data-theme="light"] .bg-white-300 {
+    background-color: #f7f7f7;
+  }

@@ -10,14 +10,12 @@ const App = ():JSX.Element => {
 
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); // 현재 테마 상태 추가
 
-  // 테마 변경 함수
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
   };
 
-  // useEffect 훅으로 테마 초기화 및 업데이트
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -31,7 +29,7 @@ const App = ():JSX.Element => {
       <input type="checkbox" id="sidebar" className="drawer-toggle" />
       <div className="drawer-content flex flex-col min-h-screen">
         <Nav toggleTheme={toggleTheme} />
-          <section className="pt-28 pb-24 flex-1">
+          <section className="pt-32 flex-1">
             <Router />
           </section>
         <Footer />

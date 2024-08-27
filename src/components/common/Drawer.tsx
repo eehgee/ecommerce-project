@@ -23,4 +23,4 @@ const Drawer = ():JSX.Element =>{
     )
 }
 
-export default Drawer
+export default Drawer;

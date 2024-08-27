@@ -4,12 +4,7 @@ const Footer = ():JSX.Element =>{
   return(
     <div className="w-full bg-reddish text-white p-10 h-38">
       <footer className="flex flex-col md:flex-row justify-between items-center mx-auto container">
-        <aside>
-            
-            <div>
-                <p className="text-sm">Copyright © {new Date().getFullYear()} Kim Eun Ju</p>
-            </div>
-        </aside>
+        
         <nav>
           <div className="grid grid-flow-col gap-4">
             <Link to={"https://www.instagram.com/"} target="_blank">
@@ -47,6 +42,11 @@ const Footer = ():JSX.Element =>{
             </Link>
           </div>
         </nav>
+        <aside className="sm:mt-2">
+            <div>
+                <p className="text-sm">Copyright © {new Date().getFullYear()} Kim Eun Ju</p>
+            </div>
+        </aside>
       </footer>
     </div>
   )

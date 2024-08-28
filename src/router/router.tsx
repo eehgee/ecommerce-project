@@ -6,12 +6,20 @@ import Digital from "../views/Digital";
 import Furniture from "../views/Furniture";
 import Life from "../views/Life";
 import Products from "../views/Products";
+import Login from "../components/layout/Signin";
+import Membership from "../components/layout/Signup";
 
-const Router = ():JSX.Element =>{
+interface RouterProps {
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>; 
+  }
+
+const Router = ({ setIsLoggedIn }: RouterProps):JSX.Element =>{
     return(
         <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/products/:id" element={<Products />} />
+            <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/join" element={<Membership />} />
             <Route path="fashion" element={<Fashion />} />
             <Route path="shoes" element={<Shoes />} />
             <Route path="digital" element={<Digital />} />

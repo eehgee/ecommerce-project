@@ -13,9 +13,29 @@ const navigation = [
 
 interface NavProps {
   toggleTheme: () => void;
+  isLoggedIn: boolean; 
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Nav = ({ toggleTheme }:NavProps):JSX.Element =>{
+const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn }:NavProps):JSX.Element =>{
+  const handleLogout = () => {
+    if (window.Kakao) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      window.Kakao.Auth.logout((response: any) => {
+        if (response) {
+          console.log("카카오 로그아웃 성공", response);
+          setIsLoggedIn(false);  
+          alert("로그아웃 되었습니다.");
+        } else {
+          console.error("카카오 로그아웃 실패");
+          alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+        }
+      });
+    } else {
+      console.error("Kakao SDK is not loaded.");
+    }
+  };
+
     return(
       <div className="fixed z-10 w-full bg-reddish shadow text-white">
         <div className="mx-auto max-w-7xl px-2 lg:px-8">
@@ -104,8 +124,18 @@ const Nav = ({ toggleTheme }:NavProps):JSX.Element =>{
 
               {/* 로그인, 회원가입, 장바구니 */}
             <div className="flex justify-center items-center">
-              <div className="p-2"><Link to="/"><span className="text-sm">로그인</span></Link></div>
-              <div className="p-2"><Link to="/"><span className="text-sm">회원가입</span></Link></div>
+             {isLoggedIn ? (
+              // 로그아웃 상태일 때 보이는 메뉴
+              <div className="p-2 cursor-pointer" onClick={handleLogout}>
+                <span className="text-sm">로그아웃</span>
+              </div>
+            ) : (
+              // 로그인 상태가 아닐 때 보이는 메뉴
+              <>
+                <div className="p-2"><Link to="/login"><span className="text-sm">로그인</span></Link></div>
+                <div className="p-2"><Link to="/join"><span className="text-sm">회원가입</span></Link></div>
+              </>
+            )}
               <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-gray-700">
                   <div className="indicator">

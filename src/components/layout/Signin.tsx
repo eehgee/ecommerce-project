@@ -5,9 +5,11 @@ import { loginUser } from "../../store/loginuser";
 
 interface LoginProps {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>; 
+  setLoginMethod: React.Dispatch<React.SetStateAction<'kakao' | 'regular' | null>>; 
+
 }
 
-const Login = ({ setIsLoggedIn }: LoginProps):JSX.Element => {
+const Login = ({ setIsLoggedIn, setLoginMethod }: LoginProps):JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const Login = ({ setIsLoggedIn }: LoginProps):JSX.Element => {
       console.log('User logged in:', data);
       
       setIsLoggedIn(true);
-      
+      setLoginMethod('regular');
       navigate('/'); 
     } catch (error) {
       console.error('Error logging in user:', error);
@@ -40,6 +42,7 @@ const Login = ({ setIsLoggedIn }: LoginProps):JSX.Element => {
       success: function (authObj: any) {
         console.log("카카오 로그인 성공", authObj);
         setIsLoggedIn(true);
+        setLoginMethod('kakao');
         navigate("/"); 
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

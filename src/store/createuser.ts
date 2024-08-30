@@ -22,10 +22,10 @@ export async function createUser(user: CreateUser) {
       }
   
       const data = await response.json();
-      return data;  // 성공한 경우, 생성된 사용자 정보 반환
+      return data;  
     } catch (error) {
       console.error('Error creating user:', error);
-      throw error;  // 에러가 발생한 경우 호출한 곳에서 처리할 수 있도록 에러를 던짐
+      throw error;  
     }
   }
 

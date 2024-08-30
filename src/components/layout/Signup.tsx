@@ -11,24 +11,24 @@ const Membership = ():JSX.Element => {
 
   
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault(); // 페이지 새로고침 방지
+      e.preventDefault(); 
   
       const user = {
-        name,  // 여기서는 이름과 ID가 동일하다고 가정
+        name,  
         email,
         password,
-        avatar: 'https://picsum.photos/800',  // 임시 아바타 URL
+        avatar: 'https://picsum.photos/800',  
       };
   
       try {
-        const data = await createUser(user);  // createUser 함수 호출
+        const data = await createUser(user);  
         console.log('User created:', data);
-        alert('사용자 가입이 성공적으로 완료되었습니다.');
-        navigate('/login'); // 예: 홈 페이지나 대시보드 페이지로 이동
+        alert('가입이 성공적으로 완료되었습니다.');
+        navigate('/login'); 
 
       } catch (error) {
         console.error('Error creating user:', error);
-        alert('사용자 가입에 실패했습니다. 다시 시도해주세요.');
+        alert('가입에 실패했습니다. 다시 시도해주세요.');
       }
     };
 

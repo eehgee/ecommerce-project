@@ -5,19 +5,19 @@ const productsAPI = import.meta.env.VITE_PLATZI_FAKE_STORE_API;
 
 console.log(productsAPI);
 
-interface Icategory {
-    readonly name : string;
-    // readonly image : string;
-  }
+// interface Icategory {
+//     readonly name : string;
+//     // readonly image : string;
+//   }
 
 
 export interface IProduct{
-    readonly id : number;
-    readonly title : string;
-    readonly price : number;
-    readonly description : string;
-    readonly category : Icategory;
-    readonly images : string[];
+    readonly id: number;
+    readonly title: string;
+    readonly description: string;
+    readonly category: string;
+    readonly price: number;
+    readonly image: string;
 }
 
 export const productsItem = selector<IProduct[]>({

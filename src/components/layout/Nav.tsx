@@ -5,26 +5,27 @@ import Search from "../common/Search";
 
 const navigation = [
   { name: '패션', to: '/fashion', current: false },
-  { name: '신발', to: '/shoes', current: false },
   { name: '디지털', to: '/digital', current: false },
-  { name: '가구', to: '/furniture', current: false },
-  { name: '라이프', to: '/life', current: false },
+  { name: '액세서리', to: '/life', current: false },
 ];
 
 interface NavProps {
   toggleTheme: () => void;
   isLoggedIn: boolean; 
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  loginMethod: 'kakao' | 'regular' | null; 
+  setLoginMethod: React.Dispatch<React.SetStateAction<'kakao' | 'regular' | null>>;
 }
 
-const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn }:NavProps):JSX.Element =>{
+const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMethod }:NavProps):JSX.Element =>{
   const handleLogout = () => {
-    if (window.Kakao) {
+    if (loginMethod === 'kakao' && window.Kakao) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       window.Kakao.Auth.logout((response: any) => {
         if (response) {
           console.log("카카오 로그아웃 성공", response);
           setIsLoggedIn(false);  
+          setLoginMethod(null);
           alert("로그아웃 되었습니다.");
         } else {
           console.error("카카오 로그아웃 실패");
@@ -32,7 +33,9 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn }:NavProps):JSX.Element =>
         }
       });
     } else {
-      console.error("Kakao SDK is not loaded.");
+      setIsLoggedIn(false); 
+      setLoginMethod(null); 
+      alert("로그아웃 되었습니다.");
     }
   };
 

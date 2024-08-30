@@ -6,22 +6,24 @@ import PriceFilter from '../common/PriceFilter';
 
 interface ItemListProps {
   limit? : number;
-  category? : string;
+  category? : string | string[];
 }
 
 const ItemList = ({ limit, category } : ItemListProps): JSX.Element => {
   const itemsLoadable = useRecoilValueLoadable(productsItem);
   const items : IProduct[] = itemsLoadable.state === 'hasValue' ? itemsLoadable.contents : [];
 
-  const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({ min: 0, max: 1000000 });
+  const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({ min: 1, max: 10000 });
 
   const handlePrice = (min: number, max: number) => {
     setPriceRange({ min, max });
   };
 
-  const categoryItem = category
-  ? items.filter((item: IProduct) => item.category.name === category)
-  : items;
+  const categoryItem = Array.isArray(category)
+    ? items.filter((item: IProduct) => category.includes(item.category))
+    : category
+    ? items.filter((item: IProduct) => item.category === category)
+    : items;
 
    // 가격 범위 필터링
    const priceFilteredItems = categoryItem.filter(
@@ -38,10 +40,10 @@ const ItemList = ({ limit, category } : ItemListProps): JSX.Element => {
             key={item.id}
             className={"border rounded shadow currentColor flex flex-col flex-shrink-0 md:w-auto"}
           >
-            <Link to={`/product/${item.id}`} className="flex flex-col flex-grow">
+            <Link to={`/products/${item.id}`} className="flex flex-col flex-grow">
               <figure className="bg-white p-8">
                 <img
-                  src={item.images[0]}
+                  src={item.image}
                   alt={item.title}
                   className="h-40 mx-auto transform transition-transform duration-200 hover:scale-110"
                 />

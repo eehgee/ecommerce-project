@@ -12,6 +12,8 @@ const App = ():JSX.Element => {
 
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); 
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [loginMethod, setLoginMethod] = useState<'kakao' | 'regular' | null>(null); 
+
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -47,9 +49,9 @@ const App = ():JSX.Element => {
     <BrowserRouter>
       <input type="checkbox" id="sidebar" className="drawer-toggle" />
       <div className="drawer-content flex flex-col min-h-screen">
-        <Nav toggleTheme={toggleTheme} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <Nav toggleTheme={toggleTheme} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} loginMethod={loginMethod} setLoginMethod={setLoginMethod} />
           <section className="pt-32 flex-1">
-            <Router setIsLoggedIn={setIsLoggedIn} />
+            <Router setIsLoggedIn={setIsLoggedIn} setLoginMethod={setLoginMethod} />
           </section>
         <Footer />
       </div>

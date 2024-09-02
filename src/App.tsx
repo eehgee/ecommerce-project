@@ -6,8 +6,6 @@ import Drawer from "./components/common/Drawer"
 import "./assets/css/tailwind.css"
 import { useEffect, useState } from "react"
 
-
-
 const App = ():JSX.Element => {
 
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); 
@@ -45,6 +43,8 @@ const App = ():JSX.Element => {
   }, [theme]);
 
 
+
+
   return (
     <BrowserRouter>
       <input type="checkbox" id="sidebar" className="drawer-toggle" />
@@ -54,6 +54,7 @@ const App = ():JSX.Element => {
             <Router setIsLoggedIn={setIsLoggedIn} setLoginMethod={setLoginMethod} />
           </section>
         <Footer />
+        
       </div>
       <Drawer />
     </BrowserRouter>

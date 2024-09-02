@@ -7,9 +7,11 @@ import PriceFilter from '../common/PriceFilter';
 interface ItemListProps {
   limit? : number;
   category? : string | string[];
+  start?: number;
+  end?: number;
 }
 
-const ItemList = ({ limit, category } : ItemListProps): JSX.Element => {
+const ItemList = ({ limit, category, start = 0, end = 20 } : ItemListProps): JSX.Element => {
   const itemsLoadable = useRecoilValueLoadable(productsItem);
   const items : IProduct[] = itemsLoadable.state === 'hasValue' ? itemsLoadable.contents : [];
 
@@ -29,13 +31,16 @@ const ItemList = ({ limit, category } : ItemListProps): JSX.Element => {
    const priceFilteredItems = categoryItem.filter(
     (item: IProduct) => item.price >= priceRange.min && item.price <= priceRange.max
   );
+
+  const paginatedItems = priceFilteredItems.slice(start, end);
+
   
   return (
     <div>
       <PriceFilter minPrice={priceRange.min} maxPrice={priceRange.max} onChange={handlePrice} />
 
       <div className='grid gap-6 md:grid md:grid-cols-2 lg:grid-cols-4'>
-        {priceFilteredItems.slice(0, limit).map((item : IProduct) => (
+        {paginatedItems .slice(0, limit).map((item : IProduct) => (
           <div
             key={item.id}
             className={"border rounded shadow currentColor flex flex-col flex-shrink-0 md:w-auto"}

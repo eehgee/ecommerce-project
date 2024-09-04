@@ -26,9 +26,8 @@ const App = ():JSX.Element => {
       document.documentElement.classList.remove('dark');
     }
 
-    const kakaoKey = import.meta.env.VITE_KAKAO_JAVASCRIPT_KEY;
-
     // Kakao SDK 초기화
+    const kakaoKey = import.meta.env.VITE_KAKAO_JAVASCRIPT_KEY;
     if (window.Kakao && kakaoKey) {
       if (!window.Kakao.isInitialized()) {
         window.Kakao.init(kakaoKey);
@@ -40,9 +39,18 @@ const App = ():JSX.Element => {
       console.error("Kakao SDK or Kakao JavaScript Key is missing.");
     }
 
+    // 새로고침 시 로그인 상태 복원
+    const authToken = localStorage.getItem('authToken');
+    const kakaoToken = localStorage.getItem('kakaoToken');
+    
+    if (authToken) {
+      setIsLoggedIn(true);
+      setLoginMethod('regular');
+    } else if (kakaoToken) {
+      setIsLoggedIn(true);
+      setLoginMethod('kakao');
+    }
   }, [theme]);
-
-
 
 
   return (

@@ -25,7 +25,7 @@ const Login = ({ setIsLoggedIn, setLoginMethod }: LoginProps):JSX.Element => {
     try {
       const data = await loginUser(user); 
       console.log('User logged in:', data);
-      
+      localStorage.setItem("authToken", data.token);
       setIsLoggedIn(true);
       setLoginMethod('regular');
       navigate('/'); 
@@ -41,9 +41,10 @@ const Login = ({ setIsLoggedIn, setLoginMethod }: LoginProps):JSX.Element => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       success: function (authObj: any) {
         console.log("카카오 로그인 성공", authObj);
+        localStorage.setItem("kakaoToken", authObj.access_token);
         setIsLoggedIn(true);
         setLoginMethod('kakao');
-        navigate("/"); 
+        navigate('/'); 
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       fail: function (err: any) {

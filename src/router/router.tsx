@@ -6,6 +6,7 @@ import Products from "../views/Products";
 import Login from "../components/layout/Signin";
 import Membership from "../components/layout/Signup";
 import Jewelery from "../views/Jewelery";
+import Cart from "../views/Cart";
 
 interface RouterProps {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>; 
@@ -22,6 +23,7 @@ const Router = ({ setIsLoggedIn, setLoginMethod }: RouterProps):JSX.Element =>{
             <Route path="fashion" element={<Fashion  />} />
             <Route path="digital" element={<Digital  />} />
             <Route path="life" element={<Jewelery  />} />
+            <Route path="cart" element={<Cart />} />
         </Routes>
     )
 }

@@ -5,8 +5,11 @@ const productsAPI = import.meta.env.VITE_PLATZI_FAKE_STORE_API;
 
 console.log(productsAPI);
 
+interface IProductInfo{
+    readonly count : number;
+}
 
-export interface IProduct{
+export interface IProduct extends IProductInfo{
     readonly id: number;
     readonly title: string;
     readonly description: string;

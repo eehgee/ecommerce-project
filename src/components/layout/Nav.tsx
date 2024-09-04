@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import shoplogoicon from "../../assets/img/shopicon.svg"
 import Search from "../common/Search";
+import { clearCart, logout } from "../../store/cart";
 
 
 const navigation = [
@@ -18,23 +19,32 @@ interface NavProps {
 }
 
 const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMethod }:NavProps):JSX.Element =>{
+ 
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     if (loginMethod === 'kakao' && window.Kakao) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       window.Kakao.Auth.logout((response: any) => {
         if (response) {
           console.log("카카오 로그아웃 성공", response);
+          logout();
           setIsLoggedIn(false);  
           setLoginMethod(null);
+          clearCart();
           alert("로그아웃 되었습니다.");
+          navigate('/'); 
         } else {
           console.error("카카오 로그아웃 실패");
           alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
         }
       });
     } else {
+      logout();
       setIsLoggedIn(false); 
       setLoginMethod(null); 
+      clearCart(); // 장바구니 초기화
+      navigate('/'); 
       alert("로그아웃 되었습니다.");
     }
   };
@@ -128,7 +138,7 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
               {/* 로그인, 회원가입, 장바구니 */}
             <div className="flex justify-center items-center">
              {isLoggedIn ? (
-              // 로그아웃 상태일 때 보이는 메뉴
+              // 로그인 상태일 때 보이는 메뉴
               <div className="p-2 cursor-pointer" onClick={handleLogout}>
                 <span className="text-sm">로그아웃</span>
               </div>
@@ -139,29 +149,31 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
                 <div className="p-2"><Link to="/join"><span className="text-sm">회원가입</span></Link></div>
               </>
             )}
-              <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-gray-700">
-                  <div className="indicator">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                    <span className="badge badge-sm indicator-item">0</span>
+              <Link to="/cart">
+                <div className="dropdown dropdown-end">
+                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle hover:bg-gray-700">
+                    <div className="indicator">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      <span className="badge badge-sm indicator-item">{}</span>
+                    </div>
+                  </div>
+                  <div
+                    tabIndex={0}
+                    className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
                   </div>
                 </div>
-                <div
-                  tabIndex={0}
-                  className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
-                </div>
-              </div>
+              </Link>
             </div>
             {/* 로그인, 회원가입, 장바구니 end */}
             

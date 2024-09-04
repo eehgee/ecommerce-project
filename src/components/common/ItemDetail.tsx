@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { IProduct } from "../../store/products";
+import { addToCart } from "../../store/cart";
 
 
 const ItemDetail = ({ item }: { item: IProduct }):JSX.Element =>{
 
+    const handleAddToCart = () => {
+        addToCart(item);
+    }
 
     return(
             <div className="flex flex-col lg:flex-row pt-8 pb-8 justify-center items-center">
@@ -25,7 +29,7 @@ const ItemDetail = ({ item }: { item: IProduct }):JSX.Element =>{
                     </div>
                     
                     <div className="flex">
-                        <button className="btn btn-outline btn-info">장바구니에 담기</button>
+                        <button className="btn btn-outline btn-info" onClick={handleAddToCart}>장바구니에 담기</button>
                         <Link to="/cart" className="btn btn-outline btn-warning ml-2">장바구니로 이동</Link>
                     </div>
                 </div>

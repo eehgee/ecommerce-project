@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import shoplogoicon from "../../assets/img/shopicon.svg"
 import Search from "../common/Search";
-import { clearCart, logout } from "../../store/cart";
+import { clearCart, getCartItemCount, logout } from "../../store/cart";
+import { useEffect, useState } from "react";
 
 
 const navigation = [
@@ -19,8 +20,34 @@ interface NavProps {
 }
 
 const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMethod }:NavProps):JSX.Element =>{
- 
+  const [cartItemCount, setCartItemCount] = useState<number>(0); // 장바구니 아이템 수량 상태 추가
+
   const navigate = useNavigate();
+
+  const updateCartItemCount = () => {
+    const count = getCartItemCount();
+    setCartItemCount(count);
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+        updateCartItemCount();
+    } else {
+        setCartItemCount(0);
+    }
+
+    const handleCartUpdate = () => {
+        if (isLoggedIn) {
+            updateCartItemCount();
+        }
+    };
+
+    window.addEventListener('cartUpdate', handleCartUpdate);
+
+    return () => {
+        window.removeEventListener('cartUpdate', handleCartUpdate);
+    };
+}, [isLoggedIn]);
 
   const handleLogout = () => {
     if (loginMethod === 'kakao' && window.Kakao) {
@@ -32,6 +59,7 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
           setIsLoggedIn(false);  
           setLoginMethod(null);
           clearCart();
+          setCartItemCount(0);
           alert("로그아웃 되었습니다.");
           navigate('/'); 
         } else {
@@ -43,7 +71,8 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
       logout();
       setIsLoggedIn(false); 
       setLoginMethod(null); 
-      clearCart(); // 장바구니 초기화
+      clearCart();
+      setCartItemCount(0);
       navigate('/'); 
       alert("로그아웃 되었습니다.");
     }
@@ -165,7 +194,7 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
                           strokeWidth="2"
                           d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
-                      <span className="badge badge-sm indicator-item">{}</span>
+                      <span className="badge badge-sm indicator-item">{cartItemCount}</span>
                     </div>
                   </div>
                   <div

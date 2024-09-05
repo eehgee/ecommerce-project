@@ -5,9 +5,17 @@ import { addToCart } from "../../store/cart";
 
 const ItemDetail = ({ item }: { item: IProduct }):JSX.Element =>{
 
+    const isLoggedIn = !!localStorage.getItem("authToken") || !!localStorage.getItem("kakaoToken"); // 로그인 상태 확인
+
     const handleAddToCart = () => {
+        if (!isLoggedIn) {
+            alert("로그인 후 상품을 장바구니에 담을 수 있습니다.");
+            return;
+        }
+        
         addToCart(item);
-    }
+        window.dispatchEvent(new Event('cartUpdate'));
+    };
 
     return(
             <div className="flex flex-col lg:flex-row pt-8 pb-8 justify-center items-center">

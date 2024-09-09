@@ -9,9 +9,11 @@ interface ItemListProps {
   category? : string | string[];
   start?: number;
   end?: number;
+  filterItemChange?: (count: number) => void; // 필터링된 아이템 수를 부모에게 전달하는 콜백
+
 }
 
-const ItemList = ({ limit, category, start = 0, end = 20 } : ItemListProps): JSX.Element => {
+const ItemList = ({ limit, category, start = 0, end = 20, filterItemChange  } : ItemListProps): JSX.Element => {
   const itemsLoadable = useRecoilValueLoadable(productsItem);
   const items : IProduct[] = itemsLoadable.state === 'hasValue' ? itemsLoadable.contents : [];
 
@@ -34,6 +36,10 @@ const ItemList = ({ limit, category, start = 0, end = 20 } : ItemListProps): JSX
 
   const paginatedItems = priceFilteredItems.slice(start, end);
 
+   // 필터링된 아이템 수를 부모에게 전달
+   if (filterItemChange) {
+    filterItemChange(priceFilteredItems.length);
+  }
   
   return (
     <div>

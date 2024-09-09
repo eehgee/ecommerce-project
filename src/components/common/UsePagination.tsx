@@ -6,11 +6,11 @@ interface UsePaginationProps {
 }
 
 const usePagination = ({ totalItems, itemsPerPage }: UsePaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(1); // currentPage : 현재페이지
-  const totalPages = Math.ceil(totalItems / itemsPerPage); // 총 페이지 수
+  const [currentPage, setCurrentPage] = useState(1); 
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const start = (currentPage - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
+  const end = Math.min(start + itemsPerPage, totalItems);
 
   return {
     currentPage,
@@ -20,5 +20,6 @@ const usePagination = ({ totalItems, itemsPerPage }: UsePaginationProps) => {
     end,
   };
 };
+
 
 export default usePagination;

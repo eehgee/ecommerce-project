@@ -21,6 +21,7 @@ interface NavProps {
 
 const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMethod }:NavProps):JSX.Element =>{
   const [cartItemCount, setCartItemCount] = useState<number>(0); // 장바구니 아이템 수량 상태 추가
+  const [searchVisible, setSearchVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -120,26 +121,18 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
 
             <div className="md:hidden sm:block">
               <button 
-                // onClick={() => setSearchVisible(!searchVisible)}
+                onClick={() => setSearchVisible(!searchVisible)}
                 className="btn btn-ghost p-3 hover:p-3 transition-none"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 stroke-white"
-                  fill="none"
-                  viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+                <p>검색</p>
               </button>
-              {/* {searchVisible && (
-                <div className="fixed top-16 left-0 w-full shadow-lg z-50">
-                  <Search />
+              {searchVisible && (
+                <div className="fixed top-20 left-0 w-full shadow-lg z-50">
+                  <div className="flex justify-center">
+                    <Search />
+                  </div>
                 </div>
-              )} */}
+              )}
             </div>
             
             {/* theme toggle */}
@@ -218,7 +211,7 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
                   to={item.to}
                   aria-current={item.current ? 'page' : undefined}
                   className='currentColor hover:bg-gray-700 hover:text-white
-                    rounded-md px-3 py-2 text-sm font-bold'>
+                    rounded-md px-3 py-2 text-sm font-bold sm:hidden md:block'>
                   {item.name}
                 </Link>
               ))}

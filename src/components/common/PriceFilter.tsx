@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 interface PriceFilterProps {
-    minPrice: number;
-    maxPrice: number;
-    onChange: (min: number, max: number) => void;
+    minPrice : number;
+    maxPrice : number;
+    onChange : (min: number, max: number) => void;
 }
 
-const PriceFilter: React.FC<PriceFilterProps> = ({ minPrice, maxPrice, onChange }) => {
+const PriceFilter : React.FC<PriceFilterProps> = ({ minPrice, maxPrice, onChange }) => {
     const [min, setMin] = useState(minPrice);
     const [max, setMax] = useState(maxPrice);
 

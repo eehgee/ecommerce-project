@@ -5,7 +5,4 @@ export const Category : {[key : string]:string} = {
     jewelery: "액세서리",
 } as const;
 
-
-  
-
   

@@ -6,7 +6,6 @@ import { loginUser } from "../../store/loginuser";
 interface LoginProps {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>; 
   setLoginMethod: React.Dispatch<React.SetStateAction<'kakao' | 'regular' | null>>; 
-
 }
 
 const Login = ({ setIsLoggedIn, setLoginMethod }: LoginProps):JSX.Element => {
@@ -24,7 +23,6 @@ const Login = ({ setIsLoggedIn, setLoginMethod }: LoginProps):JSX.Element => {
 
     try {
       const data = await loginUser(user); 
-      console.log('User logged in:', data);
       localStorage.setItem("authToken", data.token);
       setIsLoggedIn(true);
       setLoginMethod('regular');
@@ -40,7 +38,6 @@ const Login = ({ setIsLoggedIn, setLoginMethod }: LoginProps):JSX.Element => {
     window.Kakao.Auth.login({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       success: function (authObj: any) {
-        console.log("카카오 로그인 성공", authObj);
         localStorage.setItem("kakaoToken", authObj.access_token);
         setIsLoggedIn(true);
         setLoginMethod('kakao');

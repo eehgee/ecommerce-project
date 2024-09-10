@@ -8,7 +8,6 @@ const Products = ():JSX.Element =>{
     const { id } = useParams<{ id: string }>();
     const products = useRecoilValueLoadable(productsItem); 
     const items : IProduct[] = products.state === 'hasValue' ? products.contents : [];
-
     const item = items.find((product) => product.id === Number(id));
 
     if (!item) {

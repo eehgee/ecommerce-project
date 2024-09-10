@@ -62,7 +62,6 @@ const App = ():JSX.Element => {
             <Router setIsLoggedIn={setIsLoggedIn} setLoginMethod={setLoginMethod} />
           </section>
         <Footer />
-        
       </div>
       <Drawer />
     </BrowserRouter>

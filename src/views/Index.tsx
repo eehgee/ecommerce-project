@@ -5,16 +5,12 @@ import usePagination from "../components/common/UsePagination";
 import { productsItem } from "../store/products";
 import { useState } from "react";
 
-
 const Index = (): JSX.Element => {
   const itemsLoadable = useRecoilValueLoadable(productsItem);
-
   const itemsPerPage = 8; 
-
   const [filteredItemCount, setFilteredItemCount] = useState(0);
 
-
-  const totalItems = itemsLoadable.state === 'hasValue' ? itemsLoadable.contents.length : 0; // 아이템 수 계산
+  const totalItems = itemsLoadable.state === 'hasValue' ? itemsLoadable.contents.length : 0;
   const { currentPage, setCurrentPage, totalPages, start, end } = usePagination({
     totalItems: filteredItemCount || totalItems,itemsPerPage,
   });

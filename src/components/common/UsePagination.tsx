@@ -21,5 +21,4 @@ const usePagination = ({ totalItems, itemsPerPage }: UsePaginationProps) => {
   };
 };
 
-
 export default usePagination;

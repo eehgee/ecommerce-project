@@ -5,7 +5,6 @@ export interface CreateUser{
     avatar? : string;
 }
 
-
 // 회원가입
 export async function createUser(user: CreateUser) {
     try {
@@ -28,6 +27,3 @@ export async function createUser(user: CreateUser) {
       throw error;  
     }
   }
-
-
-

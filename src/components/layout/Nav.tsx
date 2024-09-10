@@ -4,7 +4,6 @@ import Search from "../common/Search";
 import { clearCart, getCartItemCount, logout } from "../../store/cart";
 import { useEffect, useState } from "react";
 
-
 const navigation = [
   { name: '패션', to: '/fashion', current: false },
   { name: '디지털', to: '/digital', current: false },
@@ -20,7 +19,7 @@ interface NavProps {
 }
 
 const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMethod }:NavProps):JSX.Element =>{
-  const [cartItemCount, setCartItemCount] = useState<number>(0); // 장바구니 아이템 수량 상태 추가
+  const [cartItemCount, setCartItemCount] = useState<number>(0);
   const [searchVisible, setSearchVisible] = useState(false);
 
   const navigate = useNavigate();
@@ -112,7 +111,6 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
               </h1>
             </div>
             {/* logo end */}
-            
 
             {/* search */}
             <div className="flex-grow flex justify-center items-center md:block sm:hidden">
@@ -138,7 +136,6 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
             {/* theme toggle */}
             <label className="swap swap-rotate">
               <input type="checkbox" className="theme-controller" value="synthwave" onChange={toggleTheme}/>
-
               <svg
                 className="swap-off h-6 w-6 mr-2 ml-2 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
@@ -198,7 +195,6 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
               </Link>
             </div>
             {/* 로그인, 회원가입, 장바구니 end */}
-            
           </div>
         </div>
 
@@ -219,7 +215,6 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
           </div>
           {/* category end */}
       </div>
-  
   )
 }
 

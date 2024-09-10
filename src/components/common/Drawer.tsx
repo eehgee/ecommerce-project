@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "../../assets/css/tailwind.css"
 
-
 const Drawer = ():JSX.Element =>{
     const closeSide = ()=>{
         const checkbox = document.getElementById('sidebar') as HTMLInputElement;

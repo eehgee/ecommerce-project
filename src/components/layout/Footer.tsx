@@ -4,7 +4,6 @@ const Footer = ():JSX.Element =>{
   return(
     <div className="w-full bg-reddish text-white p-10 h-38">
       <footer className="flex flex-col md:flex-row justify-between items-center mx-auto container">
-        
         <nav>
           <div className="grid grid-flow-col gap-4">
             <Link to={"https://www.instagram.com/"} target="_blank">

@@ -5,15 +5,13 @@ import { useState } from 'react';
 import PriceFilter from '../common/PriceFilter';
 
 interface ItemListProps {
-  limit? : number;
   category? : string | string[];
-  start?: number;
-  end?: number;
-  filterItemChange?: (count: number) => void; // 필터링된 아이템 수를 부모에게 전달하는 콜백
-
+  start? : number;
+  end? : number;
+  filterItemChange?: (count: number) => void;
 }
 
-const ItemList = ({ limit, category, start = 0, end = 20, filterItemChange  } : ItemListProps): JSX.Element => {
+const ItemList = ({ category, start = 0, end = 20, filterItemChange  } : ItemListProps): JSX.Element => {
   const itemsLoadable = useRecoilValueLoadable(productsItem);
   const items : IProduct[] = itemsLoadable.state === 'hasValue' ? itemsLoadable.contents : [];
 
@@ -36,7 +34,6 @@ const ItemList = ({ limit, category, start = 0, end = 20, filterItemChange  } : 
 
   const paginatedItems = priceFilteredItems.slice(start, end);
 
-   // 필터링된 아이템 수를 부모에게 전달
    if (filterItemChange) {
     filterItemChange(priceFilteredItems.length);
   }
@@ -46,7 +43,7 @@ const ItemList = ({ limit, category, start = 0, end = 20, filterItemChange  } : 
       <PriceFilter minPrice={priceRange.min} maxPrice={priceRange.max} onChange={handlePrice} />
 
       <div className='grid gap-6 md:grid md:grid-cols-2 lg:grid-cols-4'>
-        {paginatedItems .slice(0, limit).map((item : IProduct) => (
+        {paginatedItems.map((item : IProduct) => (
           <div
             key={item.id}
             className={"border rounded shadow currentColor flex flex-col flex-shrink-0 md:w-auto"}

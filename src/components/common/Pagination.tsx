@@ -1,8 +1,7 @@
-
 interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
+  currentPage : number;
+  totalPages : number;
+  onPageChange : (page: number) => void;
 }
 
 const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps): JSX.Element => {

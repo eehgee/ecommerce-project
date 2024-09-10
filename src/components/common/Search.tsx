@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { IProduct } from "../../store/cart";
 import { Link } from "react-router-dom";
 
-
 const Search = ():JSX.Element =>{
     
     const itemsLoadable = useRecoilValueLoadable(productsItem);
@@ -12,7 +11,6 @@ const Search = ():JSX.Element =>{
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const [filteredItems, setFilteredItems] = useState<IProduct[]>([]);
     const searchRef = useRef<HTMLDivElement>(null);
-
 
     useEffect(() => {
         if (itemsLoadable.state === "hasValue") {

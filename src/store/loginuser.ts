@@ -3,7 +3,6 @@ export interface LoginUser {
     password: string;
   }
 
-
 export async function loginUser(user: LoginUser){
     try {
       const response = await fetch('https://api.escuelajs.co/api/v1/auth/login', {

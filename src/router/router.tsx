@@ -3,7 +3,7 @@ import Index from "../views/Index";
 import Fashion from "../views/Fashion";
 import Digital from "../views/Digital";
 import Products from "../views/Products";
-import Login from "../components/layout/Signin";
+import Login from "../components/layout/Login";
 import Membership from "../components/layout/Signup";
 import Jewelery from "../views/Jewelery";
 import Cart from "../views/Cart";

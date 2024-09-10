@@ -1,9 +1,6 @@
 import { selector } from 'recoil';
 
 const productsAPI = import.meta.env.VITE_PLATZI_FAKE_STORE_API;
-// const productsAPI = '/products.json';
-
-console.log(productsAPI);
 
 interface IProductInfo{
     readonly count : number;

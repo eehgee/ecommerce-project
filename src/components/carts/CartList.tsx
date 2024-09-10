@@ -11,7 +11,6 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
   const [cartItems, setCartItems] = useState<IProduct[]>(items);
   const [selectedCoupon, setSelectedCoupon] = useState<string>("");
 
-
   useEffect(() => {
       setCartItems(getCartItems());
   }, []);
@@ -28,7 +27,7 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
 
    // 주문금액 계산
    const totalOrderAmount = cartItems.reduce((total, item) => total + item.price * item.count, 0);
-   // 할인 금액 (예: 10% 할인)
+   // 할인 금액 10% 할인
    const discountAmount = selectedCoupon === "10" ? totalOrderAmount * 0.1 : 0;
    // 최종 결제 금액
    const finalAmount = totalOrderAmount - discountAmount;
@@ -49,7 +48,6 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
         
         return (
           <div key={item.id} className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-4 items-center">
-            
 
             {/* 이미지 */}
             <div className="flex justify-center col-span-1">
@@ -120,9 +118,7 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
           </div>
         </div>
         <div className="flex justify-end">
-          <button className="btn btn-primary">
-                구매하기
-          </button>
+          <button className="btn btn-primary">구매하기</button>
         </div>
       </div>
     </div>

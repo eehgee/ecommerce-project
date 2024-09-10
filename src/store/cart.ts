@@ -15,7 +15,7 @@ export interface IProduct {
     count: number;
 }
 
-// 장바구니에 상품을 추가 / 기존 아이템의 수량을 증가시키는 함수
+// 장바구니에 상품을 추가, 기존 아이템의 수량을 증가시키는 함수
 export const addToCart = (item: IProduct) => {
     const cartItems: IProduct[] = JSON.parse(localStorage.getItem("cartItems") || "[]");
     const existingProduct = cartItems.find((cartItem: IProduct) => cartItem.id === item.id);
@@ -29,16 +29,14 @@ export const addToCart = (item: IProduct) => {
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-    // 장바구니 업데이트 이벤트 발생
     window.dispatchEvent(new Event('cartUpdate'));
 };
 
-// 장바구니에서 상품을 감소 / 아이템 제거
+// 장바구니에서 상품을 감소, 아이템 제거
 export const removeFromCart = (itemId: number) => {
     const cartItems: IProduct[] = JSON.parse(localStorage.getItem("cartItems") || "[]");
 
-    const updatedCartItems = cartItems
-        .map(item => {
+    const updatedCartItems = cartItems.map(item => {
             if (item.id === itemId) {
                 if (item.count > 1) {
                     return { ...item, count: item.count - 1 };
@@ -54,7 +52,6 @@ export const removeFromCart = (itemId: number) => {
 
     window.dispatchEvent(new Event('cartUpdate'));
 };
-
 
 // 통화 기호
 export const formatCurrency = (amount: number) => {

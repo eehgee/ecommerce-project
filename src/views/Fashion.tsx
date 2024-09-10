@@ -5,13 +5,10 @@ import usePagination from "../components/common/UsePagination";
 import { productsItem } from "../store/products";
 import { useState } from "react";
 
-
 const Fashion = ():JSX.Element =>{
   const itemsLoadable = useRecoilValueLoadable(productsItem);
   const itemsPerPage = 8; 
-
   const [filteredItemCount, setFilteredItemCount] = useState(0);
-
 
   const totalItems = itemsLoadable.state === 'hasValue'
     ? itemsLoadable.contents.filter(item => 

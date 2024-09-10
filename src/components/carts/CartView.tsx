@@ -8,7 +8,6 @@ const CartView = (): JSX.Element => {
     const [cartItems, setCartItems] = useState<IProduct[]>([]);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-
     useEffect(() => {
         const token = localStorage.getItem("authToken");
         const kakaoToken = localStorage.getItem("kakaoToken");

@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import shoplogoicon from "../../assets/img/shopicon.svg"
 import Search from "../common/Search";
 import { clearCart, getCartItemCount, logout } from "../../store/cart";
 import { useEffect, useState } from "react";
@@ -81,7 +80,7 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
     return(
       <div className="fixed z-10 w-full bg-reddish shadow text-white">
         <div className="mx-auto max-w-7xl px-2 lg:px-8">
-          <div className="relative flex h-16 shadow items-center justify-start">
+          <div className="relative flex h-16 items-center justify-start">
             
             {/* drawer */}
             <div className="flex-none lg:hidden">
@@ -105,9 +104,7 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
             {/* logo */}
             <div className="flex flex-shrink-0 items-center ml-2 sm:flex-grow">
               <h1>
-              <Link to="/" className="flex items-center w-auto mt-4">
-                <img src={shoplogoicon} alt="shoplogoicon" className="w-14 md:block sm:hidden" />
-              </Link>
+              <Link to="/" className="flex items-center w-auto mt-4 text-xl">HOME</Link>
               </h1>
             </div>
             {/* logo end */}

@@ -80,10 +80,10 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
     return(
       <div className="fixed z-10 w-full bg-reddish shadow text-white">
         <div className="mx-auto max-w-7xl px-2 lg:px-8">
-          <div className="relative flex h-16 items-center justify-start">
+          <div className="relative flex h-16 items-center justify-end">
             
             {/* drawer */}
-            <div className="flex-none lg:hidden">
+            <div className="lg:hidden absolute left-0">
               <label htmlFor="sidebar" aria-label="open sidebar" className="btn btn-square btn-ghost w-auto transition-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -102,15 +102,15 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
             {/* drawer end */}
 
             {/* logo */}
-            <div className="flex flex-shrink-0 items-center ml-2 sm:flex-grow">
+            <div className="flex flex-shrink-0 items-center ml-2 sm:flex-grow hidden md:block">
               <h1>
-              <Link to="/" className="flex items-center w-auto mt-4 text-xl">HOME</Link>
+              <Link to="/" className="flex items-center w-auto text-xl ml-8">HOME</Link>
               </h1>
             </div>
             {/* logo end */}
 
             {/* search */}
-            <div className="flex-grow flex justify-center items-center md:block sm:hidden">
+            <div className="flex-grow flex justify-center items-center hidden md:block">
               <Search />
             </div>
 
@@ -129,7 +129,7 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
                 </div>
               )}
             </div>
-            
+
             {/* theme toggle */}
             <label className="swap swap-rotate">
               <input type="checkbox" className="theme-controller" value="synthwave" onChange={toggleTheme}/>
@@ -204,7 +204,7 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
                   to={item.to}
                   aria-current={item.current ? 'page' : undefined}
                   className='currentColor hover:bg-gray-700 hover:text-white
-                    rounded-md px-3 py-2 text-sm font-bold sm:hidden md:block'>
+                    rounded-md px-3 py-2 text-sm font-bold hidden md:block'>
                   {item.name}
                 </Link>
               ))}

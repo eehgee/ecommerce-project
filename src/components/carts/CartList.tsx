@@ -34,7 +34,7 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
 
   return (
     <div className="container mx-auto mt-4 px-2 lg:px-0">
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-6 border-b pb-4">
+      <div className="hidden lg:grid lg:grid-cols-5 lg:gap-4 lg:mb-6 lg:border-b lg:pb-4">
         <div className="font-bold text-center">이미지</div>
         <div className="font-bold text-center">상품명</div>
         <div className="font-bold text-center">수량</div>
@@ -85,39 +85,38 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
         );
       })}
 
-      {/* 쿠폰적용 */}
-      <div className="mt-12 p-10">
+      <div className="mt-12 p-4 lg:p-10">
         <div>
-          <h2>쿠폰할인</h2>
-          <select className="w-2/5 h-8 text-black text-center mt-4 border border-gray-500" value={selectedCoupon} onChange={(e) => setSelectedCoupon(e.target.value)}>
+          <h2 className="text-lg font-bold">쿠폰할인</h2>
+          <select className="w-full h-8 text-black text-center mt-4 border border-gray-500" value={selectedCoupon} onChange={(e) => setSelectedCoupon(e.target.value)}>
             <option value="">-- 쿠폰을 선택해주세요 --</option>
             <option value="10">웰컴 할인쿠폰 적용 10%</option>
           </select>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6 text-center mt-12 border border-gray-500 p-4">
-          <div className="text-2xl border-r border-gray-500">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 mt-12 border border-gray-500 p-4">
+          <div className="text-lg lg:text-2xl border-b lg:border-r lg:border-b-0 border-gray-500 text-center">
             <span>주문금액</span>
-            <p className="mt-10">
+            <p className="mt-2">
               {formatCurrency(totalOrderAmount)}
             </p>
           </div>
 
-          <div className="text-2xl border-r border-gray-500">
+          <div className="text-lg lg:text-2xl border-b lg:border-r lg:border-b-0 border-gray-500 text-center">
             <span>할인 금액</span>
-            <p className="mt-10">
+            <p className="mt-2">
               {formatCurrency(discountAmount)}
             </p>
           </div>
 
-          <div className="text-2xl">
+          <div className="text-lg lg:text-2xl text-center">
             <span>총 금액</span>
-            <p className="mt-10">
+            <p className="mt-2">
               {formatCurrency(finalAmount)}
             </p>
           </div>
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-end mt-4">
           <button className="btn btn-primary">구매하기</button>
         </div>
       </div>

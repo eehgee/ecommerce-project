@@ -19,8 +19,6 @@ interface NavProps {
 
 const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMethod }:NavProps):JSX.Element =>{
   const [cartItemCount, setCartItemCount] = useState<number>(0);
-  const [searchVisible, setSearchVisible] = useState(false);
-
   const navigate = useNavigate();
 
   const updateCartItemCount = () => {
@@ -115,20 +113,13 @@ const Nav = ({ toggleTheme, isLoggedIn, setIsLoggedIn, loginMethod, setLoginMeth
             </div>
 
             <div className="md:hidden sm:block">
-              <button 
-                onClick={() => setSearchVisible(!searchVisible)}
-                className="btn btn-ghost p-3 hover:p-3 transition-none"
-              >
-                <p>검색</p>
-              </button>
-              {searchVisible && (
-                <div className="fixed top-20 left-0 w-full shadow-lg z-50">
-                  <div className="flex justify-center">
-                    <Search />
-                  </div>
+              <div className="fixed top-20 left-0 w-full shadow-lg z-50">
+                <div className="flex justify-center">
+                  <Search />
                 </div>
-              )}
+              </div>
             </div>
+            {/* search end */}
 
             {/* theme toggle */}
             <label className="swap swap-rotate">

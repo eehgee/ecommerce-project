@@ -34,7 +34,7 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
 
   return (
     <div className="container mx-auto mt-4 px-2 lg:px-0">
-      <div className="hidden lg:grid lg:grid-cols-5 lg:gap-4 lg:mb-6 lg:border-b lg:pb-4">
+        <div className="hidden lg:grid lg:grid-cols-5 lg:gap-4 lg:mb-6 lg:border-b lg:pb-4">
         <div className="font-bold text-center">이미지</div>
         <div className="font-bold text-center">상품명</div>
         <div className="font-bold text-center">수량</div>
@@ -47,7 +47,7 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
          const totalPrice = item.price * item.count;
         
         return (
-          <div key={item.id} className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-4 items-center">
+          <div key={item.id} className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-20 items-center">
 
             {/* 이미지 */}
             <div className="flex justify-center col-span-1">
@@ -67,20 +67,22 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
 
             {/* 수량 */}
             <div className="flex justify-center items-center">
-              <button className="btn btn-primary rounded-tr-none rounded-br-none" onClick={() => removeFromHandler(item.id)}>-</button>
+              <button className="btn btn-active btn-primary rounded-tr-none rounded-br-none" onClick={() => removeFromHandler(item.id)}>-</button>
               <button className="join-item flex justify-center items-center w-12 h-12 hover:bg-gray-500 hover:h-12 opacity-50 border border-gray-500">{`${item.count}`}</button>
-              <button className="btn btn-primary rounded-tl-none rounded-bl-none" onClick={() => addToHandler(item)}>+</button>
+              <button className="btn btn-active btn-primary rounded-tl-none rounded-bl-none" onClick={() => addToHandler(item)}>+</button>
             </div>
+
+            {/* 가격 (모바일 적용) */}
+            <div className="text-center lg:hidden">가격: {formatCurrency(rounding)}</div>
+
+            {/* 합계 (모바일 적용) */}
+            <div className="text-center lg:hidden">상품금액 : {formatCurrency(totalPrice)}</div>
 
             {/* 가격 */}
-            <div className="text-center">
-              {formatCurrency(rounding)}
-            </div>
+            <div className="hidden lg:block text-center">{formatCurrency(rounding)}</div>
 
             {/* 합계 */}
-            <div className="text-center">
-              {formatCurrency(totalPrice)}
-            </div>
+            <div className="hidden lg:block text-center">{formatCurrency(totalPrice)}</div>
           </div>
         );
       })}
@@ -97,23 +99,17 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 mt-12 border border-gray-500 p-4">
           <div className="text-lg lg:text-2xl border-b lg:border-r lg:border-b-0 border-gray-500 text-center">
             <span>주문금액</span>
-            <p className="mt-2">
-              {formatCurrency(totalOrderAmount)}
-            </p>
+            <p className="mt-2">{formatCurrency(totalOrderAmount)}</p>
           </div>
 
           <div className="text-lg lg:text-2xl border-b lg:border-r lg:border-b-0 border-gray-500 text-center">
             <span>할인 금액</span>
-            <p className="mt-2">
-              {formatCurrency(discountAmount)}
-            </p>
+            <p className="mt-2">{formatCurrency(discountAmount)}</p>
           </div>
 
           <div className="text-lg lg:text-2xl text-center">
             <span>총 금액</span>
-            <p className="mt-2">
-              {formatCurrency(finalAmount)}
-            </p>
+            <p className="mt-2">{formatCurrency(finalAmount)}</p>
           </div>
         </div>
         <div className="flex justify-end mt-4">

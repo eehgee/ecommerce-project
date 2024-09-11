@@ -17,7 +17,6 @@ module.exports = {
         black : '#000000',
         reddish : '#242322',
         yellow : '#f2da00'
-        // #c9bca5
       },
     },
   },

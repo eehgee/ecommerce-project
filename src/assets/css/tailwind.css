@@ -23,15 +23,7 @@ html, body{
     background-color: #1d1a1a;
   }
   
-  [data-theme="light"] .bg-gray-800 {
-    background-color: #fff;
-  }
-  
-  [data-theme="light"] .bg-gray-700 {
-    background-color: #f4f4f4;
-  }
-  
-  [data-theme="light"] .bg-white-300 {
-    background-color: #f7f7f7;
-  }
-
+  [data-theme="light"] .dropdown-menu {
+    background-color: #eeeeee; 
+    color: #1a1a1a;
+}

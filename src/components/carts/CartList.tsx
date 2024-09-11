@@ -73,7 +73,7 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
             </div>
 
             {/* 가격 (모바일 적용) */}
-            <div className="text-center lg:hidden">가격: {formatCurrency(rounding)}</div>
+            <div className="text-center lg:hidden">가격 : {formatCurrency(rounding)}</div>
 
             {/* 합계 (모바일 적용) */}
             <div className="text-center lg:hidden">상품금액 : {formatCurrency(totalPrice)}</div>
@@ -103,7 +103,7 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
           </div>
 
           <div className="text-lg lg:text-2xl border-b lg:border-r lg:border-b-0 border-gray-500 text-center">
-            <span>할인 금액</span>
+            <span>할인금액</span>
             <p className="mt-2">{formatCurrency(discountAmount)}</p>
           </div>
 

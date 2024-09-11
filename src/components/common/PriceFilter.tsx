@@ -24,11 +24,11 @@ const PriceFilter : React.FC<PriceFilterProps> = ({ minPrice, maxPrice, onChange
         <div className="price-filter mb-8">
             <label className='pr-6'>
                 최저 :
-                <input type="number" value={min} onChange={handleMinChange} className='border-4 w-16 ml-2 dark:text-black'/>
+                <input type="number" value={min} onChange={handleMinChange} className='border-2 w-16 ml-2'/>
             </label>
             <label>
                 최대 :
-                <input type="number" value={max} onChange={handleMaxChange} className='border-4 w-16 ml-2 dark:text-black'/>
+                <input type="number" value={max} onChange={handleMaxChange} className='border-2 w-16 ml-2'/>
             </label>
         </div>
     );

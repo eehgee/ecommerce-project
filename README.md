@@ -43,6 +43,7 @@ ALL / 패션 / 디지털 / 액세서리 카테고리에 페이지네이션 적�
 
 
 # Vercel 배포 주소
+https://ecommerce-project-lake-five.vercel.app/
 
 # React + TypeScript + Vite
 

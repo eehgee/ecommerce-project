@@ -90,7 +90,7 @@ const CartList = ({ items }: CartListProps): JSX.Element => {
       <div className="mt-12 p-4 lg:p-10">
         <div>
           <h2 className="text-lg font-bold">쿠폰할인</h2>
-          <select className="w-full h-8 text-black text-center mt-4 border border-gray-500" value={selectedCoupon} onChange={(e) => setSelectedCoupon(e.target.value)}>
+          <select className="w-full h-8 text-currentColor text-center mt-4 border border-gray-500" value={selectedCoupon} onChange={(e) => setSelectedCoupon(e.target.value)}>
             <option value="">-- 쿠폰을 선택해주세요 --</option>
             <option value="10">웰컴 할인쿠폰 적용 10%</option>
           </select>
